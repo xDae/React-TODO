@@ -23,9 +23,7 @@ class WodList extends React.Component {
 
     return (
       <IconMenu iconButtonElement={iconButtonElement}>
-        <MenuItem>Reply</MenuItem>
-        <MenuItem>Forward</MenuItem>
-        <MenuItem onTouchTap={() => { this._deleteElement(id)}}>Delete</MenuItem>
+        <MenuItem onTouchTap={() => {this._deleteElement(id)}}>Delete</MenuItem>
       </IconMenu>
     )
   };
