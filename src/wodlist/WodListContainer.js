@@ -1,5 +1,7 @@
 import React from 'react';
 import localforage from 'localforage';
+import uniqueId from 'lodash/uniqueId';
+
 import '../localStorageConfig';
 
 import '../App.css';
@@ -21,7 +23,6 @@ class WodListContainer extends React.Component {
   }
 
 	componentWillMount() {
-
 		localforage.getItem('wodList')
 		.then((wodList) => {
 			if (wodList !== null) {
@@ -32,25 +33,26 @@ class WodListContainer extends React.Component {
 		})
 	}
 
-	updateState = (Wod) => {
+	updateState = (wod) => {
 		this.setState({
-			list: Wod
+			list: wod
 		});
 	};
 
   _adddWod(name) {
-    let Wod = {
-      id: this.state.list.length + 1,
+    let wod = {
+      id: uniqueId(),
       name
     };
-		let newState = this.state.list.concat([Wod]);
+
+		let newState = this.state.list.concat([wod]);
 
 		localforage.setItem('wodList', newState)
 		.then(() => {
 			this.updateState(newState);
 		})
 		.catch(function (err) {
-		  console.log(err);
+		  console.error(err);
 		});
   }
 
@@ -62,7 +64,7 @@ class WodListContainer extends React.Component {
 			this.updateState(newState);
 		})
 		.catch(function (err) {
-		  console.log(err);
+		  console.error(err);
 		});
   }
 
@@ -71,12 +73,13 @@ class WodListContainer extends React.Component {
 			<MuiThemeProvider>
 				<div className="wod-list">
           <AddWodForm addWod={this._adddWod} />
-          <Wodlist list={this.state.list} deleteWod={this._deleteWod} />
+          <Wodlist
+						list={this.state.list}
+						deleteWod={this._deleteWod} />
 				</div>
 			</MuiThemeProvider>
 		);
 	}
-
 }
 
 export default WodListContainer;
