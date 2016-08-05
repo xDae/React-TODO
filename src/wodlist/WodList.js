@@ -7,16 +7,12 @@ import IconButton from 'material-ui/IconButton/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 class WodList extends React.Component {
-	_deleteElement(event) {
-		// console.log(event);
-		console.log(this._algo);
-		// this.props.deleteWod();
+	_deleteElement(id) {
+		this.props.deleteWod(id);
 	}
 
-	render() {
-		let { list } = this.props;
-
-		const iconButtonElement = (
+  rightIconMenu(id) {
+    const iconButtonElement = (
 		  <IconButton
 		    touch={true}
 		    tooltipPosition="bottom-left"
@@ -25,22 +21,25 @@ class WodList extends React.Component {
 		  </IconButton>
 		);
 
-		const rightIconMenu = (
-		  <IconMenu iconButtonElement={iconButtonElement}>
-		    <MenuItem>Reply</MenuItem>
-		    <MenuItem>Forward</MenuItem>
-		    <MenuItem onTouchTap={this._deleteElement.bind(this)}>Delete</MenuItem>
-		  </IconMenu>
-		);
+    return (
+      <IconMenu iconButtonElement={iconButtonElement}>
+        <MenuItem>Reply</MenuItem>
+        <MenuItem>Forward</MenuItem>
+        <MenuItem onTouchTap={() => { this._deleteElement(id)}}>Delete</MenuItem>
+      </IconMenu>
+    )
+  };
+
+	render() {
+		let { list } = this.props;
 
 		return (
 			<List>
-				{list.map((listItem) => (
+				{list.map(({id, name}) => (
 					<ListItem
-						ref={(c) => this._algo = c}
-						key={listItem.id}
-						primaryText={listItem.name}
-						rightIconButton={rightIconMenu}
+						key={id}
+						primaryText={name}
+						rightIconButton={this.rightIconMenu(id)}
 					/>
 				))}
 			</List>

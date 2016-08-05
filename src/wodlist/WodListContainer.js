@@ -1,5 +1,4 @@
 import React from 'react';
-// import update from 'react-addons-update';
 import '../App.css';
 
 import AddWodForm from './AddWodForm';
@@ -8,17 +7,10 @@ import Wodlist from './WodList';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class WodListContainer extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      list: [
-        {id:1, name: 'Hello'},
-        {id:2, name: 'World'},
-        {id:3, name: 'How'},
-        {id:4, name: 'Are'},
-        {id:5, name: 'You'},
-        {id:6, name: '?'}
-      ]
+      list: []
     };
   }
 
@@ -33,13 +25,10 @@ class WodListContainer extends React.Component {
     });
   }
 
-  _deleteWod(item) {
-    console.log(item);
-    // const newState = this.state.list;
-    // if (newState.indexOf(item) > -1) {
-    //   newState.splice(newState.indexOf(item), 1);
-    //   this.setState({list: newState})
-    // }
+  _deleteWod(id) {
+    this.setState({
+      list: this.state.list.filter(item => item.id !== id)
+    })
   }
 
 	render() {

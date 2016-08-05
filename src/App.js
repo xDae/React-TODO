@@ -14,7 +14,7 @@ class App extends Component {
 					<AppBar title="WODLOG" />
 				</MuiThemeProvider>
 
-        <WodListContainer />
+        <WodListContainer caca="ghvjbk" />
 			</div>
     );
   }
