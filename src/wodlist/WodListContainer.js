@@ -1,5 +1,5 @@
 import React from 'react';
-import update from 'react-addons-update';
+// import update from 'react-addons-update';
 import '../App.css';
 
 import AddWodForm from './AddWodForm';
@@ -33,22 +33,21 @@ class WodListContainer extends React.Component {
     });
   }
 
-  _deleteWod(key) {
-    const Wod = {
-      text: key
-    };
-
-    this.setState({
-      list: this.state.list.concat([Wod])
-    });
+  _deleteWod(item) {
+    console.log(item);
+    // const newState = this.state.list;
+    // if (newState.indexOf(item) > -1) {
+    //   newState.splice(newState.indexOf(item), 1);
+    //   this.setState({list: newState})
+    // }
   }
 
 	render() {
 		return (
 			<MuiThemeProvider>
 				<div className="wod-list">
-          <AddWodForm addWod={this._adddWod.bind(this)} deleteWod={this._deleteWod.bind(this)} />
-          <Wodlist list={this.state.list}/>
+          <AddWodForm addWod={this._adddWod.bind(this)} />
+          <Wodlist list={this.state.list} deleteWod={this._deleteWod.bind(this)} />
 				</div>
 			</MuiThemeProvider>
 		);

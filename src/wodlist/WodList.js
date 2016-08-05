@@ -7,13 +7,11 @@ import IconButton from 'material-ui/IconButton/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 class WodList extends React.Component {
-	_console(event) {
-		console.log(event);
+	_deleteElement(event) {
+		// console.log(event);
+		console.log(this._algo);
+		// this.props.deleteWod();
 	}
-
-	// deleteElement() {
-	//
-	// }
 
 	render() {
 		let { list } = this.props;
@@ -31,15 +29,15 @@ class WodList extends React.Component {
 		  <IconMenu iconButtonElement={iconButtonElement}>
 		    <MenuItem>Reply</MenuItem>
 		    <MenuItem>Forward</MenuItem>
-		    <MenuItem onTouchTap={this._console}>Delete</MenuItem>
+		    <MenuItem onTouchTap={this._deleteElement.bind(this)}>Delete</MenuItem>
 		  </IconMenu>
 		);
 
 		return (
 			<List>
-				{list.map((listItem, index) => (
+				{list.map((listItem) => (
 					<ListItem
-						// deleteElement={}
+						ref={(c) => this._algo = c}
 						key={listItem.id}
 						primaryText={listItem.name}
 						rightIconButton={rightIconMenu}
