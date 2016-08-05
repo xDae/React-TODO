@@ -21,11 +21,14 @@ class WodListContainer extends React.Component {
   }
 
 	componentWillMount() {
+
 		localforage.getItem('wodList')
-		.then((value) => {
-			this.setState({
-	      list: value
-	    });
+		.then((wodList) => {
+			if (wodList !== null) {
+				this.setState({
+					list: wodList
+				});
+			}
 		})
 	}
 
