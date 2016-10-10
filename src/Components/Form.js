@@ -47,8 +47,13 @@ class AddWodForm extends React.Component {
 					fullWidth={true}
 					hintText="Write a WOD"
 					value={this.state.form.input}
-					onChange={this._handleInputChange.bind(this)} />
-				<RaisedButton label="Submit" primary={true} onClick={this._handleSubmit.bind(this)} />
+					onChange={this._handleInputChange.bind(this)}
+				/>
+				<RaisedButton
+					label="Submit"
+					primary={true}
+					onClick={this._handleSubmit.bind(this)}
+				/>
 			</form>
 		);
 	}

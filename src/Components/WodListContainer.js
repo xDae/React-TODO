@@ -6,8 +6,8 @@ import '../localStorageConfig';
 
 import '../App.css';
 
-import AddWodForm from './AddWodForm';
-import Wodlist from './WodList';
+import AddWodForm from './Form';
+import Wodlist from './List';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 

@@ -4,18 +4,18 @@ import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 
-import WodListContainer from './wodlist/WodListContainer.js';
+import WodListContainer from './Components/WodListContainer.js';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-				<MuiThemeProvider>
-					<AppBar title="WODLOG" />
-				</MuiThemeProvider>
+        <MuiThemeProvider>
+          <AppBar title="react TODO" />
+        </MuiThemeProvider>
 
-        <WodListContainer caca="ghvjbk" />
-			</div>
+        <WodListContainer />
+      </div>
     );
   }
 }
