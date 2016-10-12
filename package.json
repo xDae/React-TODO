@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
+    "flow-bin": "^0.33.0",
     "react-scripts": "^0.6.1"
   },
   "dependencies": {
@@ -21,6 +22,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "check-types": "flow",
     "eject": "react-scripts eject"
   }
 }

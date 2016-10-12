@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react';
 
 import './App.css';
@@ -15,7 +17,17 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 import TodoForm from './Components/TodoForm';
 
+type todo = {
+  key: string,
+  done: boolean,
+  name: string
+}
+
 class App extends Component {
+  state: {
+    todoList: Array<todo>
+  };
+
   constructor() {
     super();
 
@@ -33,14 +45,14 @@ class App extends Component {
     })
   }
 
-  addTodo = name => {
-    const totoItem = {
+  addTodo = (name: string): void => {
+    const todoItem = {
       key: shortid.generate(),
       done: false,
       name
     };
 
-    const newState = this.state.todoList.concat([totoItem]);
+    const newState = this.state.todoList.concat([todoItem]);
 
     localforage.setItem('todoList', newState)
     .then(() => {
@@ -53,8 +65,8 @@ class App extends Component {
     });
   }
 
-  deleteElement = id => {
-    console.log(`deleting: ${id}`);
+  deleteElement = (id: string) => {
+    // console.log(`deleting: ${id}`);
 
     const newState = this.state.todoList.filter(({key}) => key !== id);
 
@@ -76,9 +88,9 @@ class App extends Component {
     </IconButton>
   );
 
-  rightIconMenu = key => {
+  rightIconMenu = (key: string) => {
     return (
-      <IconMenu iconButtonElement={this.iconButtonElement}>
+      <IconMenu iconButtonElement={this.iconButtonElement()}>
         <MenuItem onTouchTap={() => this.deleteElement(key)}>Delete</MenuItem>
       </IconMenu>
     )

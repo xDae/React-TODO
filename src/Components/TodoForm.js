@@ -1,10 +1,20 @@
+// @flow
+
 import React, { Component } from 'react';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
+type form = {
+  form: {
+    input: string
+  }
+}
+
 class TodoForm extends Component {
+  state: form
+
   constructor() {
     super();
     this.state = {
@@ -22,7 +32,7 @@ class TodoForm extends Component {
     });
   }
 
-  _handleInputChange = ({ target }) => {
+  _handleInputChange = ({ target }: { target: Object }): void => {
     this.setState({
       form: {
         input: target.value
@@ -30,7 +40,8 @@ class TodoForm extends Component {
     });
   }
 
-  _handleSubmit = e => {
+  _handleSubmit = (e: Object ) => {
+    console.log(e);
     e.preventDefault();
 
     let todoText = this.state.form.input;
@@ -54,7 +65,7 @@ class TodoForm extends Component {
           <RaisedButton
             label="Submit"
             primary={true}
-            onClick={this._handleSubmit.bind(this)}
+            onClick={this._handleSubmit}
           />
         </form>
       </MuiThemeProvider>
